@@ -98,7 +98,7 @@ The choice of the _MySQL_ database-engine was based on the fact that the team ha
 
 ## **Database #2 - The unfamiliar database**
 
-The choice of _Neo4j_ was based on the teams desire to learn more about working with the graph based database-engine, which (like _MongoDB_) was build on Nosql. The engines capability to visually display the data very differently than the other engines (_MySQL and MongoDB_) with the whole _node_-concept and _relationships_ was also very intriguing to the team. Furthermore, the team believed that if the _MySQL _part of the project was developed first and was successfully, the team would have more time experimenting with trying to translate the _MySQL_-queries into similar cypher statement and use them in _Neo4j_, since cypher statements use similar SQL clauses. Also, according to the neo4j-website itself, the database is touted as being “_easy to learn, easy to use_”<sup>1</sup>, as well as _“being easy to transition to, from a relational database developer”<sup>2</sup>_.
+The choice of _Neo4j_ was based on the teams desire to learn more about working with the graph based database-engine, which (like _MongoDB_) was build on Nosql. The engines capability to visually display the data very differently than the other engines (_MySQL and MongoDB_) with the whole _node_-concept and _relationships_ was also very intriguing to the team. Furthermore, the team believed that if the _MySQL_ part of the project was developed first and was successfully, the team would have more time experimenting with trying to translate the _MySQL_-queries into similar cypher statement and use them in _Neo4j_, since cypher statements use similar SQL clauses. Also, according to the neo4j-website itself, the database is touted as being “_easy to learn, easy to use_”<sup>1</sup>, as well as _“being easy to transition to, from a relational database developer”<sup>2</sup>_.
 
 Some of the concepts and challenges that the team looked forward to work with in _Neo4j_ was:
 
@@ -151,7 +151,7 @@ The purpose of this chapter is to give an insight into the teams thoughts regard
 
 _Screenshot of the MySQL data model and structure_
 
-The data structure for MySQL is structured so that it’s both easy to work with, and performant. Given the RDF formats, and the data known in the data structure of the local zip files and metadata files, each book has multiple authors, and each author has a reference to all his / her books. Each author however, doesn’t have a reference to each book in their own table, but rather a joint table with the name _BookWrittenBy** **_which contains the indexes of the _Author_- and _Book_-table, making lookups and future references easy to handle. Usually this sort of structure is created for **n*n** type of tables, and the following theme is also followed for _LocationsInBook_, containing the indexes for which book, mentions which location. Each mention will receive their own row. The database engine used is the default one, InnoDB. It’s one of a few that support foreign key constraints, and it’s the usual vanilla when it comes to running MySQL databases. There’s also MariaDB, and others like it, however we didn’t see it fit to use any other, since some work tools like Workbench has troubles with other engines (Notably MariaDB).
+The data structure for MySQL is structured so that it’s both easy to work with, and performant. Given the RDF formats, and the data known in the data structure of the local zip files and metadata files, each book has multiple authors, and each author has a reference to all his / her books. Each author however, doesn’t have a reference to each book in their own table, but rather a joint table with the name _BookWrittenBy_ which contains the indexes of the _Author_- and _Book_-table, making lookups and future references easy to handle. Usually this sort of structure is created for `n*n` type of tables, and the following theme is also followed for _LocationsInBook_, containing the indexes for which book, mentions which location. Each mention will receive their own row. The database engine used is the default one, InnoDB. It’s one of a few that support foreign key constraints, and it’s the usual vanilla when it comes to running MySQL databases. There’s also MariaDB, and others like it, however we didn’t see it fit to use any other, since some work tools like Workbench has troubles with other engines (Notably MariaDB).
 
 **Pros**
 
@@ -245,7 +245,6 @@ _Picture 7_
 After having set a droplet to download the data, using the hints provided in the assignment description<sup>3</sup>, we were presented with with the problem of determining how to extract the author(s) and the title of the book. \
 Initially the team tried seeing if there was a structure in the books that allowed for an easy extraction from the txt files - these are found by unzipping the zip files, but after careful observation we determined that the inconsistent way each books presents their author and title would make it a huge hassle to do that way, thus we searched for a different approach.
 
- \
 This came in the form of searching through each rdf file, for the corresponding file number, given as the zip name. We used grep, as this was a useful and easy to use tool that we could call quite easily from NodeJS. The searching for a single file took upwards of 30-40 seconds each, and with time that would slowly lower, as we would exclude more and more files for it to search through (We estimated an average of ~20 seconds a book, over the course of all 55k). This approach seemed like it was at least possible, compared to the previous idea, but still seemed like it would take too long to actually get finished, as the time it took was only searching for the file. On top of that, we’d need to search the file itself for all the cities it mentioned, and take into consideration inserting all the data into the database.
 
 We tackled the cities mentioned in a very primitive way - we initially considered making a trie to quickly lookup each word from the text, and determined if that was a city name, although the main problem we saw was that it was difficult to determine when to stop the search, as there is a city named “Bo”, so is “Body” a city? Definitely not, so it must continue till it has reached a space. Also, some cities have spaces in their name, so how would we go about determining if they are valid? There were a lot of cases that made it difficult to ensure both cases, so we ended up doing a reverse lookup, looking at each city name, and determining if it was present in the book that was being processed.
@@ -255,8 +254,6 @@ String search is luckily relatively fast, so even though there were many thousan
 With regards to linkin the rdf files to the specific books, we could not come up with a better plan than what was already thought out, but we noticed a pattern in the zip file names, that drastically reduced the search time - all the numerical file names had the exact same corresponding rdf file name, reducing our search space to a single index lookup, which is almost optimal. We adjusted our algorithm accordingly, disregarded the few files that had non numerical file names (such as _sesli10.zip_) and started running the import script for the data.
 
 It ran for some time, but we ran into problems with some of the zip files not only including their book, but nesting the book inside a folder - this was observed on a few occasions, but rare enough that we decided to just skip them, than add additional logic to recursively check folders for any matching file, although this could have been a reasonable solution, too.
-
-
 
 ------
 
@@ -287,25 +284,15 @@ Much of the latency comes from Neo4J, rather than the backend itself. The HTTP A
  
 The cause of this, as described in previous topics in this report, could be one of either
 
-
-
 *   Our data model is completely off, causing massive delays and spikes in performance
 *   The queries we made are extremely bad performance wise, causing comparisons or lookups to be badly performant
 *   The VPS simply isn’t powerful enough for running both databases (Although unlikely)
 
 
-
-
-
 ## **Execution Schedule**
 
 
-
 * **1**. The query being run here is the one that returns all books and authors, mentioning a specific city. Issue here is clearly that we have not created indexes for the specific tables.
-
-
-
-
 
 
 ![mysqlEP1](images/mysqlEP1.PNG)
@@ -316,10 +303,6 @@ _Screenshot of the MySQL Execution plan, for getting all books and it’s author
 * **2**. Due to the missing indexes, there’s no specific pointer to which row that we’re referencing, or rows, apart from a value which isn’t indexes, causing the query to run through all possible elements (Hence the full table scan).
 
 
-
-
-
-
 ![mysqlEP2](images/mysqlEP2.PNG )
 
 
@@ -328,20 +311,12 @@ _Screenshot of the MySQL Execution plan, for returning all locations in which a 
 * **3**. Once more, indexes are missing. There’s quite a few elements in our many-to-many table (Around a million or more), causing it to be very large. Although once more, no index is causing the lookups to be severe (The author name as well as book title).
 
 
-
-
-
-
 ![mysqlEP3](images/mysqlEP3.PNG )
 
 
 _Screenshot of the MySQL Execution plan, for returning all locations and book titles given a author name._
 
 * **4**. Without sounding too repetitive, same case once more. A fulltext index on the title of the book would do wonders in our case.
-
-
-
-
 
 ![mysqlEP4](images/mysqlEP4.PNG )
 
@@ -439,14 +414,14 @@ The team wanted to quickly recap the different database-engine and their feature
 
 _Picture 10_
 
-A database-engine based on SQL, which is based on the Relational Database Management System (RDMS), which is more commonly known as a relational database. MySQL has been around for a long time and is therefore greatly supported by a large community. A few key concepts and features of MySQL are _tables, columns, rows, normalization, sql constraints, data integrity, replication_ and _ACID_.
+A database-engine based on SQL, which is based on the Relational Database Management System (RDMS), which is more commonly known as a relational database. MySQL has been around for a long time and is therefore greatly supported by a large community. A few key concepts and features of MySQL are *tables, columns, rows, normalization, sql constraints, data integrity, replication* and *ACID*.
 As of this writing, MySQL is the second overall-most popular database engine, only behind Oracle, according to db-engines.com<sup>4</sup>.
 
 ![mongodblogo](images/mongodblogo.png)
 
 _Picture 11_
 
-MongoDB is a Document-based database, which is based on NoSQL, and because of its schema-less nature it is regarded as being highly flexible and easy to scale. A few key concepts and features of MongoDB are _Collections, Documents, default _id, dynamic schema, BSON/JSON, dynamic queries, clear single object structure, replication and high availability, fast in-place updates, no complex joins, auto-sharding _and (as of 2018) _multi-document ACID_.
+MongoDB is a Document-based database, which is based on NoSQL, and because of its schema-less nature it is regarded as being highly flexible and easy to scale. A few key concepts and features of MongoDB are *Collections, Documents, default _id, dynamic schema, BSON/JSON, dynamic queries, clear single object structure, replication and high availability, fast in-place updates, no complex joins, auto-sharding* and (as of 2018) *multi-document ACID*.
 
 As of this writing, MongoDB is the fifth overall-most popular database engine, but number one amongst Document-databases, according to db-engines.com<sup>4</sup>.
 
@@ -454,7 +429,7 @@ As of this writing, MongoDB is the fifth overall-most popular database engine, b
 
 _Picture 12_
 
-Neo4j is a graphs-database, which is based on NoSQL. Neo4j presents its data very visually, compared to the more text-based representations found in MySQL and MongoDB. This is done by displaying the data as objects and linking them together to show relationships among each other, with no need for a third-party tools to visualize this. A few key features and concepts of Neo4j are _flexible data model (flexible schema), real-time insight, high availability, easy retrieval, cypher query language, connected and semi structured data, no joins, acid support, scalability and reliability_ and _built-in web application_.
+Neo4j is a graphs-database, which is based on NoSQL. Neo4j presents its data very visually, compared to the more text-based representations found in MySQL and MongoDB. This is done by displaying the data as objects and linking them together to show relationships among each other, with no need for a third-party tools to visualize this. A few key features and concepts of Neo4j are *flexible data model (flexible schema), real-time insight, high availability, easy retrieval, cypher query language, connected and semi structured data, no joins, acid support, scalability and reliability* and *built-in web application*.
 
 As of this writing, Neo4j’s the 22 overall-most popular database engine, but number one amongst Graph-databases, according to db-engines.com<sup>4</sup>.
 
