@@ -25,7 +25,7 @@ _Picture 2_
 
 ## **Gutenberg**
 
-Johannes Gutenberg was the man who invented the printing press around 1439, making it possible to print books and others text, for easier distribution and greater availability.
+Johannes Gutenberg was the man who invented the printing press around the year 1439, making it possible to print books and others text, for easier distribution and greater availability.
 
 The Gutenberg Project, which this database project is somewhat inspired by, is the oldest digital library of books in the world. The project was started back in 1971 by Michael S. Hart, with the objective of digitizing, preserving and sharing as many books and text as possible, from around the world and for free to use.
 
