@@ -9,9 +9,9 @@ _Picture 1_
 
 *Christian Engelberth Olsen, Viktor Kim Christiansen, William Pfaffe, Chris Rosendorf* 
 
-**Dolphin Boys**
+**Group: Dolphin Boys**
 
-**30 of May 2019 07:00**
+**Due date: 30th of May 2019 07:00**
 
 **Copenhagen Business Academy**
 
@@ -41,12 +41,14 @@ The goal of this database project was to select two types of databases (MySQL, M
 3. _Given an author name your application lists all books written by that author and plots all cities mentioned in any of the books onto a map._
 4. _Given a geolocation, your application lists all books mentioning a city in vicinity of the given geolocation._
 
-The original project description and task can be found [here](https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/Exam/GutenbergProject.md) and the developed project can be found in the repos listed below. The team developed the project using TypeScript (JavaScript), due to the team's previous experience developing with it, as well as the teams confidence that it could live up to all the assignment requirements. 
+The original project description and task can be found [here](https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/Exam/GutenbergProject.md) and within this repo are two folders with the teams suggested solution for the project:
 
+*   DBFinal 
+    *   Serves as both the projects backend and a very small frontend (built using server-rendering HTML). 
+*   ImportData
+    *   The part of the project that imports information from the various data-files and sends it to the databases.
 
-## **Repo**
-
-REPO LINK HERE
+The team developed the project using TypeScript (JavaScript), due to the team's previous experience developing with it, as well as the teams confidence that it could live up to all the assignment requirements. 
 
 ------
 
@@ -142,7 +144,7 @@ Going with the combination of _MySQL_ and _Neo4j_ was therefore a [twofer](https
 
 _Picture 5_
 
-The purpose of this chapter, is to give an insight into the teams thoughts regarding how the data was modeled in both the _MySQL-_ and _Neo4j_-database.
+The purpose of this chapter is to give an insight into the teams thoughts regarding how the data was modeled in both the _MySQL-_ and _Neo4j_-database.
 
 ## **MySQL**
 ![mysqlstructure](images/mysqlstructure.png)
@@ -377,8 +379,6 @@ The specifications and terms for the project was to:
 
 With the project terms and specifications laid out, one can start to analyse some of challenges and obstacles facing building the application:
 
-
-
 *   The Data
     *   Two separate datasets is to be used for the assignment
     *   Downloaded as .txt files
@@ -405,7 +405,7 @@ With the project terms and specifications laid out, one can start to analyse som
                 *   Locations mentioned in the book
 *   The Queries
     *   _Given a city name your application returns all book titles with corresponding authors that mention this city._
-        *   Need data from only the _books _dataset
+        *   Need data from only the _books_ dataset
             *   Input: A city name
             *   Output: List of book titles that mentions the city
     *   _Given a book title, your application plots all cities mentioned in this book onto a map._
@@ -469,7 +469,7 @@ Despite the teams mixed results of developing a database using Neo4j for this pr
 
 The team would opt not to use MySQL for production of this project, because when searching for data and relations, queries can become quite complex due to the need of “joins”.  In theory, execution time for MySQL should be longer compared to Neo4j, due to the queries in MySQL having to dig through the database to find the relations, whereas the Neo4j queries already know the relations. In addition to this, if more tables were added to the MySQL database, the complexity and time consumptions for searches would increase. 
 
-The team would not opt to use MongoDB for production of this project, mainly due to the amount of potential duplicate data. While the team definitely sees the advantage of having data being stored in the document-structure of MongoDB, thus eliminating the need for _relations_ as in Neo4j and _joins_ MySQL when searching and querying, the amount of references to cities mentioned by a book by a author, makes the team fear that the database would be overblown with duplicate data. While _relations _and _joins_ can be achieved in MongoDB by _aggregation_, the team believes using that technique in queries would break the document-based nature of MongoDB.
+The team would not opt to use MongoDB for production of this project, mainly due to the amount of potential duplicate data. While the team definitely sees the advantage of having data being stored in the document-structure of MongoDB, thus eliminating the need for _relations_ as in Neo4j and _joins_ MySQL when searching and querying, the amount of references to cities mentioned by a book by a author, makes the team fear that the database would be overblown with duplicate data. While _relations_ and _joins_ can be achieved in MongoDB by _aggregation_, the team believes using that technique in queries would break the document-based nature of MongoDB.
 
 
 ----
