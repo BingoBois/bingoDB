@@ -495,7 +495,7 @@ The team would not opt to use MongoDB for production of this project, mainly due
 * Picture 10: https://upload.wikimedia.org/wikipedia/en/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png 19/5-2019
 * Picture 11: https://webassets.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png 19/5-2019
 * Picture 12: http://static1.squarespace.com/static/56a8f387a12f446482d70f54/56be1d737c65e413043079c0/5825a51c3e00be283bf633f1/1478879110004/neo4j_logob.png?format=1500w 19/5-2019
-* Pciture 13: https://imgs.xkcd.com/comics/thesis_defense.png 19/5-2019
+* Picture 13: https://imgs.xkcd.com/comics/thesis_defense.png 19/5-2019
 
 
 -----
