@@ -354,7 +354,7 @@ _Screenshot of the MySQL Execution plan, for returning all books within a certai
 
 _Picture 9_
 
-Before discussing the pros and cons of each database-engine and finding the one that the team would recommend, one must first layout the specifications and terms for the project, as well as analysing the potential challenges and obstacles, in order to better put the pros and cons of the various databases into better context.
+Before discussing which database-engine to chose, one must first layout the specifications and terms for the project, as well as analysing the potential challenges and obstacles, in order to better put the pros and cons of the various databases into better context.
 
 The specifications and terms for the project was to:
 
