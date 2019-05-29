@@ -1,0 +1,2 @@
+# bingoDB
+Collection
