@@ -409,7 +409,7 @@ With the project terms and specifications laid out, one can start to analyse som
 
 The team wanted to quickly recap the different database-engine and their features, very shortly (because the team could spend hours and pages on describing every little detail regarding each database)
 
-
+### **MySQL**
 ![Mysqllogo](images/mysqllogo.png)
 
 _Picture 10_
@@ -417,6 +417,7 @@ _Picture 10_
 A database-engine based on SQL, which is based on the Relational Database Management System (RDMS), which is more commonly known as a relational database. MySQL has been around for a long time and is therefore greatly supported by a large community. A few key concepts and features of MySQL are *tables, columns, rows, normalization, sql constraints, data integrity, replication* and *ACID*.
 As of this writing, MySQL is the second overall-most popular database engine, only behind Oracle, according to db-engines.com<sup>4</sup>.
 
+### **MongoDB**
 ![mongodblogo](images/mongodblogo.png)
 
 _Picture 11_
@@ -425,6 +426,7 @@ MongoDB is a Document-based database, which is based on NoSQL, and because of it
 
 As of this writing, MongoDB is the fifth overall-most popular database engine, but number one amongst Document-databases, according to db-engines.com<sup>4</sup>.
 
+### **Neo4j**
 ![nej4logo](images/neo4jlogo.png)
 
 _Picture 12_
