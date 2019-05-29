@@ -43,9 +43,9 @@ The goal of this database project was to select two types of databases (MySQL, M
 
 The original project description and task can be found [here](https://github.com/datsoftlyngby/soft2019spring-databases/blob/master/Exam/GutenbergProject.md) and within this repo are two folders with the teams suggested solution for the project:
 
-*   DBFinal 
+*   **DBFinal** 
     *   Serves as both the projects backend and a very small frontend (built using server-rendering HTML). 
-*   ImportData
+*   **ImportData**
     *   The part of the project that imports information from the various data-files and sends it to the databases.
 
 The team developed the project using TypeScript (JavaScript), due to the team's previous experience developing with it, as well as the teams confidence that it could live up to all the assignment requirements. 
