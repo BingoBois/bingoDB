@@ -164,12 +164,12 @@ The issue with having a many-to-many table, and especially relying on them in mu
 
 Data is modelled somewhat after our interpretation of what the MySQL Data would look like. However, Neo4j luckily has support for many to many relations, which removes the need for many-to-many tables, specifically to keep references. Each author has a relation to the book that they “Wrote”, and multiple books can be written by the same author, likewise the book can have many different authors. Each author consists of a name and a ID. Each book, contains an id and the title of the book. 
 
-![neo4j1](images/neo4j1.png)
+![neo4j1](images/neo4j1.PNG)
 
 _Screenshot of a relationship (wrote) in Neo4j, between an author and a book, from the project_
 
 
-![neo4j2](images/neo4j2.png)
+![neo4j2](images/neo4j2.PNG)
 
 _Model of a relationship (wrote) in Neo4j_
 
@@ -185,11 +185,11 @@ Unfortunately, due to inexperience with Neo4J, our data model is somewhat crippl
 
 
 
-![neo4jrelations](images/neo4jrelations.png)
+![neo4jrelations](images/neo4jrelations.PNG)
 
 _Screenshot of a relationship (mentions) in Neo4j, between an book and locations, from the project_
 
-![neo4jrelations2](images/neo4jrelations2.png)
+![neo4jrelations2](images/neo4jrelations2.PNG)
 
 _Model of a relationship(mention) in Neo4j_
 
@@ -268,7 +268,7 @@ _Picture 8_
 
 Below is a graph of 18 queries, being run both on mysql and neo4j.
 
-![GRAPH](images/QueryGraph.png)
+![GRAPH](images/QueryGraph.PNG)
 
 The X Axis is the amount of data points, and Y Being total milliseconds. It’s important to differentiate 2 things, that occurred in this test:
 
@@ -306,7 +306,7 @@ The cause of this, as described in previous topics in this report, could be one 
 
 
 
-![mysqlEP1](images/mysqlEP1.png "image_tooltip")
+![mysqlEP1](images/mysqlEP1.PNG)
 
 
 _Screenshot of the MySQL Execution plan, for getting all books and it’s authors given a city name_
@@ -318,7 +318,7 @@ _Screenshot of the MySQL Execution plan, for getting all books and it’s author
 
 
 
-![mysqlEP2](images/mysqlEP2.png )
+![mysqlEP2](images/mysqlEP2.PNG )
 
 
 _Screenshot of the MySQL Execution plan, for returning all locations in which a book mentions_
@@ -330,7 +330,7 @@ _Screenshot of the MySQL Execution plan, for returning all locations in which a 
 
 
 
-![mysqlEP3](images/mysqlEP3.png )
+![mysqlEP3](images/mysqlEP3.PNG )
 
 
 _Screenshot of the MySQL Execution plan, for returning all locations and book titles given a author name._
@@ -341,7 +341,7 @@ _Screenshot of the MySQL Execution plan, for returning all locations and book ti
 
 
 
-![mysqlEP4](images/mysqlEP4.png )
+![mysqlEP4](images/mysqlEP4.PNG )
 
 
 _Screenshot of the MySQL Execution plan, for returning all books within a certain vicinity of a geographic point._
